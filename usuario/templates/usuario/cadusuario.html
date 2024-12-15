@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %}Cadastro de Usuário{% endblock %}
+    {% block header %}<!-- Header Start -->
+    <header style="{% block background %} {% endblock %}">
+        <div>
+            <h1 class="display-4 mb-4"> </h1>
+            <h2 class="display-2 mb-5">{%  block name %} {% endblock %}</h2>
+            <div class="search-container mx-auto mb-5" style="max-width: 600px;">
+
+            </div>
+    </header>
+    {% endblock %}
+
+{% block contheader %}
+    <div class="page-heading text-center py-4">
+        <h1>Cadastre-se</h1>
+        <span class="subheading">Seja Bem-Vindo ao nosso sistema!</span>
+    </div>
+{% endblock %}
+
+{% block conteudo %}
+    <main class="mb-5">
+        <div class="container px-4 px-lg-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card shadow-sm border-light">
+                        <div class="card-header text-center">
+                            <h4>Cadastrar-se</h4>
+                        </div>
+                        <div class="card-body">
+                            {% if messages %}
+                                {% for m in messages %}
+                                    <div class="alert alert-{{ m.tags }} mb-4">
+                                        {{ m }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="username">Nome de Usuário</label>
+                                    <input type="text" name="username" class="form-control" id="username" placeholder="Digite seu nome de usuário" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="first_name">Nome</label>
+                                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Digite seu nome" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="last_name">Sobrenome</label>
+                                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Digite seu sobrenome" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">E-mail</label>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password1">Senha</label>
+                                    <input type="password" name="password1" class="form-control" id="password1" placeholder="Digite sua senha" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password2">Confirmar Senha</label>
+                                    <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirme sua senha" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block mt-3">Cadastrar</button>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center">
+                            <p class="mb-0">Já tem uma conta? <a href="{% url 'login' %}">Faça login</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

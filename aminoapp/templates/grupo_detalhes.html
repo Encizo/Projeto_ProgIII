@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Detalhes do Grupo: {{ grupo.nome }} {% endblock %}
+
+
+{% block conteudo %}
+    <div class="container py-5">
+        <!-- Título do Grupo -->
+        <div class="text-center mb-5">
+            <h3>{{ grupo.nome }}</h3>
+            <p>{{ grupo.descricao }}</p>
+        </div>
+
+        <!-- Caixa de Mensagens -->
+        <div class="chat-box bg-light p-4 rounded shadow-sm">
+            <h4 class="mb-4">Mensagens</h4>
+            <div class="messages mb-3" style="max-height: 400px; overflow-y: auto;">
+                {% for mensagem in grupo.mensagens.all %}
+                    <div class="message mb-2">
+                        <strong>{{ mensagem.usuario.username }}</strong>: {{ mensagem.texto }}
+                    </div>
+                {% empty %}
+                    <p class="text-muted">Não há mensagens ainda.</p>
+                {% endfor %}
+            </div>
+
+            <!-- Formulário de Envio de Mensagem -->
+            {% if user.is_authenticated %}
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="texto" class="form-control" rows="3" placeholder="Escreva uma mensagem..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Enviar Mensagem</button>
+                </form>
+            {% else %}
+                <div class="alert alert-danger mt-3" role="alert">
+                    Para enviar mensagens, por favor <a href="{% url 'logout' %}" class="alert-link">faça login</a>.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
