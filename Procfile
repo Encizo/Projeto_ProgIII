@@ -1,0 +1,1 @@
+web: gunicorn amino.wsgi:aminoapp --log-file -
