@@ -63,9 +63,9 @@ class CriarGrupoView(LoginRequiredMixin, View):
     def post(self, request):
         form = GrupoForm(request.POST)
         if form.is_valid():
-            grupo = form.save(commit=False)  # Não salva ainda, só cria o objeto
-            grupo.criador = request.user      # Atribui o usuário logado como criador
-            grupo.save()                      # Agora salva o grupo com o criador
+            grupo = form.save(commit=False)
+            grupo.criador = request.user
+            grupo.save()
             return redirect("minhas_comunidades")
         return render(request, self.template_name, {"form": form})
 

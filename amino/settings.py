@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
-from django.conf.global_settings import STATIC_ROOT, MEDIA_URL, MEDIA_ROOT
 
 import pymysql
 pymysql.install_as_MySQLdb()

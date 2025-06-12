@@ -2,19 +2,6 @@
 
 {% block titulo %} Minhas Comunidades {% endblock %}
 
-{% block header %}
-    <header style="background-image: url('/static/assets/img/bgteste2.png');
-                    background-size: cover;
-                    background-position: center;
-                    height: 100vh;
-                    color: white;">
-        <div class="d-flex align-items-center justify-content-center" style="height: 100vh;">
-            <div class="text-center">
-                <h1 class="display-3">Minhas Comunidades</h1>
-            </div>
-        </div>
-    </header>
-{% endblock %}
 
 {% block conteudo %}
     <main>
@@ -44,7 +31,7 @@
                             <p class="text-center">Você não criou nenhum grupo ainda.</p>
                         {% endfor %}
                     </div>
-                    {% include 'pagination.html' %}
+
                     <div class="text-center mt-4">
                         <a href="{% url 'criar_grupo' %}" class="btn btn-success btn-lg">Criar Comunidade</a>
                     </div>
